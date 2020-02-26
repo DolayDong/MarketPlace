@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".classModel.ListProduct"></activity>
-        <activity android:name=".DetailProduct" />
+        <activity android:name=".DetailProduct"
+            android:parentActivityName=".ListProducts"/>
         <activity android:name=".ListProducts">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

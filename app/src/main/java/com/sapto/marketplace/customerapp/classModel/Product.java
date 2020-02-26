@@ -6,13 +6,14 @@ import android.os.Parcelable;
 import com.google.gson.annotations.SerializedName;
 
 public class Product implements Parcelable {
-    private int productId;
     private int productQty;
-
+    private String productPrice;
+    private String productDesc;
     @SerializedName("productName")
     private String productNama;
 
     private String productSlug;
+
     private String productImage;
 
     @SerializedName("merchant")
@@ -21,18 +22,20 @@ public class Product implements Parcelable {
     @SerializedName("category")
     private Category categorys;
 
-    public Product(int productId, int productQty, String productNama, String productSlug, String productImage, Merchant merchants, Category categorys) {
-        this.productId = productId;
+    public Product(String productPrice, String productDesc, int productQty, String productNama, String productSlug, String productImage, Merchant merchants, Category categorys) {
+        this.productPrice = productPrice;
         this.productQty = productQty;
         this.productNama = productNama;
         this.productSlug = productSlug;
         this.productImage = productImage;
         this.merchants = merchants;
         this.categorys = categorys;
+        this.productDesc = productDesc;
     }
 
     private Product(Parcel in) {
-        productId = in.readInt();
+        productPrice = in.readString();
+        productDesc = in.readString();
         productQty = in.readInt();
         productNama = in.readString();
         productSlug = in.readString();
@@ -53,8 +56,12 @@ public class Product implements Parcelable {
         }
     };
 
-    public int getProductId() {
-        return productId;
+    public String getProductPrice() {
+        return productPrice;
+    }
+
+    public String getProductDesc() {
+        return productDesc;
     }
 
     public int getProductQty() {
@@ -89,7 +96,8 @@ public class Product implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(productId);
+        dest.writeString(productDesc);
+        dest.writeString(productPrice);
         dest.writeInt(productQty);
         dest.writeString(productNama);
         dest.writeString(productSlug);

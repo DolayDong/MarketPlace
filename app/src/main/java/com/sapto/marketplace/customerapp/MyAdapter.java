@@ -2,6 +2,7 @@ package com.sapto.marketplace.customerapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -44,11 +45,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
 
         holder.tvNama.setText(products.get(position).getProductNama());
-//        holder.img.setImageResource(products.get(position).getProductImage());
         holder.tvMerchant.setText(products.get(position).getMerchants().getMerchantName());
 
-        String baseUrl = "http://210.210.154.65:4444/storage/images";
+        String baseUrl = "http://210.210.154.65:4444/storage/";
         String url = baseUrl+products.get(position).getProductImage();
+        Log.i("URL TO", url);
 
         Glide.with(context).load(url).into(holder.img);
 

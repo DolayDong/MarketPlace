@@ -13,7 +13,7 @@ import com.sapto.marketplace.customerapp.classModel.Product;
 
 public class DetailProduct extends AppCompatActivity {
     ImageView image;
-    TextView tvDetailIdProduct, tvDetailNamaProduct, tvDetailSlugProduct, tvDetailQuantity, tvDetailMerchantId, tvDetailMerchantNama, tvDetailMerchantSlug, tvDetailCategoryId, tvDetailCategotyNama;
+    TextView tvDetailNamaProduct, tvDetailHarga, tvDetailDeskripsi, tvDetailSlugProduct, tvDetailQuantity, tvDetailMerchantNama, tvDetailMerchantSlug, tvDetailCategotyNama;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -32,28 +32,26 @@ public class DetailProduct extends AppCompatActivity {
         inisialisasiElement();
 String baseUrl = "http://210.210.154.65:4444/storage/";
 String url = baseUrl+product.getProductImage();
-        Glide.with(this).load("http://210.210.154.65:4444/storage/images/products/product_image_1280x780.png").into(image);
+        Glide.with(this).load(url).into(image);
 
-tvDetailIdProduct.setText("ID Product : " + product.getProductId());
-tvDetailNamaProduct.setText("Nama Product : " + product.getProductNama());
+tvDetailNamaProduct.setText(product.getProductNama());
+tvDetailHarga.setText("Rp. " + product.getProductPrice());
 tvDetailSlugProduct.setText("Slug Product : " + product.getProductSlug());
-tvDetailQuantity.setText("Quantity Product : " + product.getProductQty());
-tvDetailMerchantId.setText("Merchant ID : " + product.getMerchants().getMerchantId());
+tvDetailQuantity.setText("Quantity : " + product.getProductQty());
+tvDetailDeskripsi.setText("Deskripsi : " + product.getProductDesc());
 tvDetailMerchantNama.setText("Nama Merchant : " + product.getMerchants().getMerchantName());
 tvDetailMerchantSlug.setText("Merchant Slug : " + product.getMerchants().getMerchantSlug());
-tvDetailCategoryId.setText("Category ID : " + String.valueOf(product.getCategorys().getCategoryId()));
 tvDetailCategotyNama.setText("Nama Category : " + product.getCategorys().getCategoryName());
     }
 
     public void inisialisasiElement(){
         image = findViewById(R.id.detail_image_view);
-        tvDetailIdProduct = findViewById(R.id.tv_detail_id);
+        tvDetailDeskripsi = findViewById(R.id.tv_deskripsi);
+        tvDetailHarga = findViewById(R.id.tv_harga);
         tvDetailNamaProduct =  findViewById(R.id.tv_detail_nama);
         tvDetailSlugProduct = findViewById(R.id.tv_detail_slug);
-        tvDetailMerchantId = findViewById(R.id.tv_detail_merchant_id);
         tvDetailMerchantNama = findViewById(R.id.tv_detail_merchant_name);
         tvDetailMerchantSlug =  findViewById(R.id.tv_detail_merchant_slug);
-        tvDetailCategoryId = findViewById(R.id.tv_detail_category_id);
         tvDetailCategotyNama = findViewById(R.id.tv_detail_category_name);
         tvDetailQuantity = findViewById(R.id.tv_detail_quantity);
     }

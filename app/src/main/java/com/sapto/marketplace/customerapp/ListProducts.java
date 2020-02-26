@@ -1,6 +1,7 @@
 package com.sapto.marketplace.customerapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -53,7 +54,7 @@ public class ListProducts extends AppCompatActivity {
                             ListProduct listProduct = gson.fromJson(response.toString(), ListProduct.class);
                             ArrayList<Product> data = new ArrayList<>(listProduct.getProducts());
 
-                            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(ListProducts.this);
+                            RecyclerView.LayoutManager layoutManager = new GridLayoutManager(ListProducts.this, 2);
                             recylerView.setLayoutManager(layoutManager);
                             recylerView.setAdapter(myAdapter);
                             myAdapter.addData(data);
@@ -66,8 +67,7 @@ public class ListProducts extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(ListProducts.this, "Volley Error", Toast.LENGTH_SHORT).show();
-                        error.printStackTrace();
+                        Toast.makeText(ListProducts.this, "Internet Anda Sedang Tidak Bagus", Toast.LENGTH_SHORT).show();
                     }
                 });
         requestQueue.add(request);
